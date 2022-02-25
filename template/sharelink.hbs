@@ -1,0 +1,15 @@
+<table class="table table-hover table-light">
+    <thead>
+        <tr class="uppercase">
+            <th class="col-md-12"> File Links </th>
+        </tr>
+    </thead>
+<tbody>
+    {{#each data}}
+    <tr>
+        <td> {{@key}} </td>
+        <td> {{this}}  </td>
+    </tr>
+    {{/each}}
+</tbody>
+</table>

@@ -1,0 +1,17 @@
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  image: centos:latest
+  before_script:
+    - echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+  script:
+    - ssh -t micrm@graduadosocial.online "cd nestjs-backend && rm package-lock.json && git pull && npm install && npm run build && pm2 start npm -- start && cd db-migrate && ./node_modules/.bin/db-migrate up && cd ../"
+  environment:
+      name: dev
+  only:
+    - master

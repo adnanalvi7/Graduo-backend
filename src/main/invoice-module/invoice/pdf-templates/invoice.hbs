@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>invoice</title>
+  <link href="https://fonts.googleapis.com/css?family=Muli:300,400,600,700" rel="stylesheet">
+  <style>
+    html {
+      zoom: {{ zoom}};
+      font-family: Helvetica Neue,
+      Arial,
+      sans-serif;
+
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-size: 15px;
+    }
+
+    * {
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+    }
+
+    img,
+    input {
+      border: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      vertical-align: top;
+    }
+
+
+    /* custom */
+
+    .invoice-container {
+      padding: 64px;
+
+      margin: 0 auto;
+    }
+
+
+    .blank {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    .page-layout {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .invoice-date {
+      font-size: 14px;
+      color: rgba(0, 0, 0, .54);
+      margin-bottom: 32px;
+    }
+
+    .client {
+      width: 60%;
+      float: left;
+    }
+
+    .invoice-number {
+      font-size: 18px;
+      padding-bottom: 2px;
+    }
+
+    .due-date {
+      font-size: 18px;
+      padding-bottom: 16px;
+    }
+
+    .client .info {
+      color: rgba(0, 0, 0, .54);
+      line-height: 22px;
+    }
+
+    .header .issuer {
+      margin-right: -88px;
+      padding-right: 66px;
+      color: #fff !important;
+      height: auto;
+      float: right;
+    }
+
+    .accent-bg {
+      background-color: #039be5 !important;
+    }
+
+    .issuer .logo {
+      width: 96px;
+      padding: 0 8px;
+      border-right: 1px solid hsla(0, 0%, 100%, .7);
+    }
+
+    .issuer .info {
+      padding: 16px;
+      color: #fff;
+      font-size: 15px;
+    }
+
+    .card .content .invoice-table thead tr th:first-child {
+      padding-left: 8px;
+
+    }
+
+    .card .content .invoice-table tbody tr td {
+      color: rgba(0, 0, 0, .87);
+      border-bottom: 1px solid rgba(0, 0, 0, .12);
+
+    }
+
+    table.simple.invoice-table tbody tr td {
+      padding: 16px 8px;
+    }
+
+    .invoice-table-footer {
+      margin: 32px 0 72px;
+    }
+
+
+    .discount td {
+      padding-bottom: 32px !important;
+    }
+
+
+    /* end custom */
+
+
+
+    .client {
+      width: 60%;
+      float: left;
+    }
+
+    body.theme-default .accent {
+      color: #fff !important;
+    }
+
+
+    .invoice-table {
+      font-size: 15px;
+    }
+
+    .simple .invoice-table-footer tr td {
+      text-align: right;
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, .54);
+      border-bottom: none;
+      padding: 4px 8px;
+    }
+
+    .note {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .footer .logo {
+      width: 32px;
+      min-width: 32px;
+      margin-right: 24px;
+    }
+
+    .footer .small-note {
+      font-size: 12px;
+      color: rgba(0, 0, 0, .54);
+      line-height: 14px;
+    }
+
+    .footer-wrap {
+
+      flex-direction: row;
+      box-sizing: border-box;
+      display: flex;
+      place-content: flex-start;
+      align-items: flex-start;
+    }
+
+    .wrap {
+      flex-direction: row;
+      box-sizing: border-box;
+      display: flex;
+      place-content: center flex-start;
+      align-items: center;
+    }
+
+    .wrap-1 {
+      flex-direction: row;
+      box-sizing: border-box;
+      display: flex;
+      place-content: stretch space-between;
+      align-items: stretch;
+      max-height: 100%;
+    }
+
+    .wrap-2 {
+      flex-direction: row;
+      box-sizing: border-box;
+      display: flex;
+    }
+
+    table.simple {
+      width: 100%;
+      border: none;
+      border-spacing: 0;
+      text-align: left;
+    }
+
+    .invoice-table thead tr th:first-child {
+      padding-left: 8px;
+    }
+
+    .invoice-table thead tr th {
+      color: rgba(0, 0, 0, .87);
+      border-bottom: 1px solid rgba(0, 0, 0, .12);
+    }
+
+    body.theme-default table.simple thead tr th {
+      color: rgba(0, 0, 0, .54);
+      border-bottom: 1px solid rgba(0, 0, 0, .12);
+    }
+
+
+
+    table.simple thead tr th {
+      padding: 16px 8px;
+      font-weight: 600;
+      white-space: nowrap;
+      font-size: 12px;
+    }
+
+    .invoice-table tbody tr td:first-child {
+      padding-left: 8px;
+    }
+
+    .invoice-table tbody tr td {
+      color: rgba(0, 0, 0, .87);
+      border-bottom: 1px solid rgba(0, 0, 0, .12);
+    }
+
+    table .simple tbody tr td {
+      border-bottom: 1px solid rgba(0, 0, 0, .12);
+    }
+
+    table thead tr th {
+      text-align: left;
+    }
+
+    .text-right {
+      text-align: right;
+    }
+
+    body.theme-default {
+      border-bottom: 1px solid rgba(0, 0, 0, .12);
+    }
+
+    .invoice-table-footer tr.total td {
+      padding: 15px 8px;
+      border-top: 1px solid rgba(0, 0, 0, .12);
+      font-size: 21px;
+      font-weight: 300;
+      color: #000;
+    }
+
+    .invoice-table-footer tr td:first-child {
+      text-align: right;
+    }
+
+    .invoice-table-footer tr td {
+      text-align: right;
+      font-size: 16px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, .54);
+      border-bottom: none;
+      padding: 4px 8px;
+    }
+
+    table.simple tbody tr:last-child td {
+      border-bottom: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="invoice" class="compact page-layout blank wrap-2">
+
+    <div class="invoice-container">
+      <div class="card">
+        <div class="header">
+
+          <div class="invoice-date"> {{invoiceDate}}
+          </div>
+          <div class="wrap-1">
+            <div class="client">
+              <div class="invoice-number wrap">
+                <span class="title">{{invoiceOrQuote}}:</span>
+                <span class="number">{{invoiceNumberWithSeries}}</span>
+              </div>
+              <div class="due-date wrap">
+                <span class="title">{{translations.due_date}}:</span>
+                <span class="date">{{dueDate}}</span>
+              </div>
+              <div class="info">
+                <div class="title">{{legalName}}</div>
+                <div class="address">{{billingAddress}}
+                </div>
+                {{!-- <div class="phone">+55 552 455 87</div> --}}
+                {{#emails}}
+                <div class="email">{{this}}</div>
+                {{/emails}}
+              </div>
+            </div>
+
+            {{!-- <div class="issuer accent-bg wrap">
+              <div class="logo"></div>
+              <div class="info">
+                <div class="title">Fuse Inc.</div>
+                <div class="address">2810 Country Club Road Crawford,
+                  NJ 07016
+                </div>
+                <div class="phone">+66 123 455 87</div>
+                <div class="email">hello@fuseinc.com</div>
+                <div class="website">www.fusains.com</div>
+              </div>
+            </div> --}}
+
+
+
+          </div>
+
+        </div>
+
+        <div class="content">
+          <div style="height: 110px;">
+
+          </div>
+          <table class="simple invoice-table " style="margin-top: 60px;">
+            <thead>
+              <tr>
+                <th>{{translations.concept}}</th>
+                <th>{{translations.description}}</th>
+                <th class="text-right">{{translations.quantity}}</th>
+                <th class="text-right">{{translations.unit_price}}</th>
+                <th class="text-right">{{translations.discount}}</th>
+                <th class="text-right">{{translations.irpf}}</th>
+                <th class="text-right">{{translations.vat}}</th>
+                <th class="text-right">{{translations.base_amount}}</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {{#each  lineItems}}
+
+              <tr>
+
+                <td class="title">{{conceptId}}</td>
+                <td class="title">{{ description }}</td>
+                <td class="text-right">{{unitPrice }}</td>
+                <td class="text-right">{{ discount }}</td>
+                <td class="text-right">{{ quantity }}</td>
+                <td class="text-right">{{ vat }}</td>
+                <td class="text-right">{{ irpf }}</td>
+                <td class="text-right">{{ baseAmount }}</td>
+
+
+              </tr>
+
+              {{/each }}
+            </tbody>
+          </table>
+
+
+          <table class="simple invoice-table-footer" style="width=100%">
+            <tbody>
+              <tr class="subtotal">
+                <td>{{translations.taxable_basis}}
+                </td>
+                {{#invoiceTotals}}
+                <td style="width: 135px;">{{baseAmount}}</td>
+                {{/invoiceTotals}}
+
+              </tr>
+
+              <tr class="subtotal">
+                <td>{{translations.vat}}
+                </td>
+                {{#invoiceTotals}}
+
+                <td>{{vatAmount}}</td>
+                {{/invoiceTotals}}
+
+              </tr>
+
+              <tr class="subtotal">
+                <td>{{translations.irpf}}
+
+                </td>
+                {{#invoiceTotals}}
+
+                <td>{{irpfAmount}}</td>
+                {{/invoiceTotals}}
+
+              </tr>
+              <tr class="discount">
+                <td>{{translations.applied_discount_informative}}
+                </td>
+                {{#invoiceTotals}}
+
+                <td>{{discountAmount}}</td>
+                {{/invoiceTotals}}
+
+              </tr>
+              <tr class="total">
+                <td>{{totalTitle}}</td>
+                {{#invoiceTotals}}
+
+                <td>{{totalAmount}}</td>
+                {{/invoiceTotals}}
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        {{!-- <div class="footer">
+          <div class="note">Please pay within 15 days. Thank you for your business.</div>
+          <div class="footer-wrap">
+            <div class="logo">
+              <img src="fuse.svg">
+            </div>
+            <div class="small-note">In condimentum malesuada efficitur. Mauris volutpat placerat auctor. Ut ac congue dolor. Quisque scelerisque lacus sed feugiat fermentum. Cras aliquet facilisis
+              pellentesque. Nunc hendrerit quam at leo commodo,
+              a suscipit tellus dapibus. Etiam at felis volutpat est mollis lacinia. Mauris placerat sem sit amet velit mollis,
+              in porttitor ex finibus. Proin eu nibh id libero tincidunt lacinia et eget eros.
+            </div>
+          </div>
+        </div> --}}
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>

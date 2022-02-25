@@ -1,0 +1,33 @@
+{
+  "dev": {
+    "driver": "mongodb",
+    "database": "mizenter",
+    "host": "localhost"
+  },
+  "test": {
+    "driver": "mongodb",
+    "database": "mizenter",
+    "host": "localhost"
+  },
+  "prod": {
+    "driver": "mongodb",
+    "database": "mizenter",
+    "host": "localhost"
+  },
+  "pg": {
+    "driver": "pg",
+    "user": "test",
+    "password": "test",
+    "host": "localhost",
+    "database": "mydb",
+    "port": "20144",
+    "ssl": "true",
+    "schema": "my_schema"
+  },
+  "mongo": {
+    "driver": "mongodb",
+    "database": "mizenter",
+    "host": "localhost"
+  },
+  "other": "mongodb://localhost/mizenter"
+}

@@ -1,0 +1,67 @@
+import { Document } from 'mongoose';
+
+export interface Entity extends Document {
+    number_id: number,
+    entityId: string;
+    attorneyName: string;
+    attorneyId: string;
+    entity: number;
+    legalName: string;
+    legalFormId: string;
+    cnae: string;
+    sic: string;
+    college: string;
+    lat: number;
+    lng: number;
+    mapZoom: number;
+    legalActivityId: string;
+    entityType: string;
+    companyTaxId: string;
+    googleAddress: string;
+    country: any;
+    region: any;
+    province: any;
+    business: any;
+    company: any;
+    city: string;
+    postalCode: string;
+    street: string;
+    streetNumber: string;
+    postfixAddress: string;
+    longitude: string;
+    latitude: string;
+    telephone: string;
+    fax: string;
+    gdprId: string;
+    upDate: string;
+    registrationDate: string;
+    quoteId: any;
+    policiesId: string;
+    Bank1: string;
+    AccountHolder1: string;
+    Account1: string;
+    Clabe1: string;
+    Bank2: string;
+    AccountHolder2: string;
+    Account2: string;
+    Clabe2: string;
+    subAccount: string;
+    balanceId: any;
+    commentsText: string;
+    active: string;
+    kardexId: any;
+    logo: string;
+    perfilImg: string;
+    entityAddress: any;
+    email: string;
+    accountNumber:number;
+    currency:string;
+    profile: {
+        name: string;
+        location: string;
+        website: string;
+        picture: string;
+    };
+    createdBy: any;
+    updatedBy: any;
+}

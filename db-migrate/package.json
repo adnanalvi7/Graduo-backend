@@ -1,0 +1,16 @@
+{
+  "name": "mongo-migration",
+  "version": "0.0.1",
+  "description": "",
+  "author": "",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "nest start"
+  },
+  "dependencies": {
+    "db-migrate": "^0.11.11",
+    "db-migrate-mongodb": "^1.5.0"
+  },
+  "devDependencies": {}
+}
